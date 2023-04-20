@@ -24,12 +24,12 @@ int main() {
     vector<vector<double>> B(n, vector<double>(n, 2));
 
     // Compute the matrix product of A and B with different optimization flags
-    vector<string> opt_flags = {"-O0", "-O1", "-O2", "-O3", "-Ofast"};
+    vector<string> opt_flags = {"-O0", "-O1", "-O2"};
     for (const auto& flag : opt_flags) {
         auto start = chrono::high_resolution_clock::now();
-        system(("g++ " + flag + " matrix_mult.cpp -o matrix_mult").c_str());
+        system(("g++ " + flag + " code.cpp -o code").c_str());
         vector<vector<double>> C(n, vector<double>(n));
-        system("./matrix_mult");
+        system("./code");
         auto end = chrono::high_resolution_clock::now();
         chrono::duration<double> diff = end - start;
         cout << "Time with " << flag << ": " << diff.count() << " seconds" << endl;
